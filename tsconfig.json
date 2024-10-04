@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/dashboard/Provider.jsx", "src/dashboard/Layout.jsx", "src/dashboard/sidebar/Sidebar.jsx", "src/dashboard/Overlay.jsx", "src/dashboard/sidebar/SidebarItems.jsx", "src/dashboard/sidebar/SidebarHeader.jsx", "src/dashboard/sidebar/data.jsx", "src/dashboard/TopBar.jsx", "src/dashboard/sidebar/icons/ReportIcon.jsx", "src/dashboard/sidebar/icons/SettingsIcon.jsx", "src/dashboard/sidebar/icons/HomeIcon.jsx", "src/dashboard/sidebar/icons/DocIcon.jsx", "src/dashboard/sidebar/icons/CreditIcon.jsx", "src/dashboard/sidebar/icons/ArchiveIcon.jsx", "src/components/Content.jsx", "src/components/docs/Snippet.jsx", "src/components/docs/index.jsx", "src/components/docs/Icons.jsx", "src/app/page.jsx", "src/app/layout.jsx", "src/app/admin/reports/production/page.jsx", "tailwind.config.ts", "src/app/admin/settings/page.jsx", "src/app/admin/documentation/page.jsx", "src/app/admin/credits/page.jsx", "src/app/admin/archives/page.jsx"],
+  "exclude": ["node_modules"]
+}

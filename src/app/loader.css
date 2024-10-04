@@ -1,0 +1,37 @@
+/* loader.css */
+
+.loader {
+    border: 8px solid transparent;
+    border-top-color: #2CAFFE; /* Initial color */
+    border-radius: 50%;
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    animation: spin 1s linear infinite, colorChange 1.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes colorChange {
+    0% { border-top-color: #2CAFFE; }
+    50% { border-top-color: #FF5733; }
+    100% { border-top-color: #2CAFFE; }
+  }
+  
+  .thead{
+    @apply sticky top-0 bg-white z-10 shadow-md w-full
+  }
+  .tableContainer{
+    @apply border-collapse w-full table-auto
+  }
+  .tableParent{
+    @apply overflow-y-auto overflow-x-auto
+  }
+  .th{
+    @apply py-2 text-center px-2 whitespace-nowrap
+  }
+  .td{
+    @apply py-2 text-black text-center px-2 whitespace-nowrap
+  }
