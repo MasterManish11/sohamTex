@@ -21,7 +21,6 @@ export async function POST(req) {
       const [day, month, year] = date.split('-').map(Number);
       let [hours, minutes, seconds] = time.split(':').map(Number);
 
-      // Treat 00:xx:xx as 24:xx:xx (midnight hour case)
       if (hours === 0) {
         hours = 24;
       }
@@ -42,7 +41,7 @@ export async function POST(req) {
       let stopTime = null;
       let lastStopReason = null;
       let totalTimeSum = 0;
-      let rowNumber = 1; // Initialize row number counter
+      let rowNumber = 1; 
 
       data.sort((a, b) => parseDateTime(a.date, a.time) - parseDateTime(b.date, b.time));
 
@@ -53,25 +52,23 @@ export async function POST(req) {
         if (entry.reason === 1) {
           currentStoppage = 'Normal stop';
           stopTime = entry.time;
-          lastStopReason = 1; // Track that reason 1 was the last stop reason
+          lastStopReason = 1; 
         } else if (entry.reason === 5) {
-          // Handle condition where reason 5 comes immediately after reason 1
           if (lastStopReason === 1) {
-            continue; // Ignore reason 5 if it directly follows reason 1
+            continue; 
           } else {
             currentStoppage = 'Power off';
             stopTime = entry.time;
           }
           lastStopReason = 5;
         } else if (entry.reason === 7) {
-          // Start time, calculate time only if a stop was registered
           if (stopTime) {
             const totalTime = Math.round(
               (parseDateTime(entry.date, entry.time) - parseDateTime(entry.date, stopTime)) / 1000,
             );
             totalTimeSum += totalTime;
             output.push({
-              rownumber: rowNumber++, // Add row number and increment it
+              rownumber: rowNumber++, 
               date: entry.date,
               machine: mc,
               stoppage: currentStoppage,
@@ -79,17 +76,15 @@ export async function POST(req) {
               starttime: entry.time,
               totaltime: formatTotalTime(totalTime),
             });
-            stopTime = null; // Reset after calculating
+            stopTime = null; 
             currentStoppage = null;
             lastStopReason = null;
           }
         }
-        // Reason 6 is ignored as per your requirement
       }
 
-      // Add the total sum of times at the end
       output.push({
-        rownumber: rowNumber++, // Row number for total
+        rownumber: rowNumber++,
         date: 'Total',
         machine: mc,
         stoppage: '',
