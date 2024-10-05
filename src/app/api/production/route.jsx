@@ -47,6 +47,9 @@ export async function POST(req) {
       }
     };
 
+    // Helper function to create a delay
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     for (const date of resultDates) {
       let dailyTotal = 0;
 
@@ -95,6 +98,9 @@ export async function POST(req) {
         dateTotals[date] = 0;
       }
       dateTotals[date] += dailyTotal;
+
+      // Sleep for 500 milliseconds after each date loop
+      await sleep(500);
     }
 
     // Calculate the grand total production
