@@ -105,7 +105,7 @@ export async function POST(req) {
       try {
         const shiftCondition = shift !== 'ALL' ? ` AND shift=${shift}` : '';
         const machineNo = mc <= 9 ? `0${mc}` : mc;
-        const queryString = `SELECT date, time, reason FROM production_summary_mc_${machineNo} WHERE date='${date}' ${shiftCondition} AND machine_no=${mc}`;
+        const queryString = `SELECT date, time, reason FROM u967600739_sohamTex.production_summary_mc_${machineNo} WHERE date='${date}' ${shiftCondition} AND machine_no=${mc}`;
         const answer = await query({ query: queryString, values: [] });
         return Array.isArray(answer) && answer.length > 0 ? answer : null;
       } catch (error) {

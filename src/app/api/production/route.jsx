@@ -35,7 +35,7 @@ export async function POST(req) {
         const machineNo = machine <= 9 ? `0${machine}` : machine;
         const insLengthCondition =
           insenseLentgh !== 'ALL' ? ` AND insense_length=${insenseLentgh}` : '';
-        const queryString = `SELECT * FROM production_summary_mc_${machineNo} WHERE date='${date}' ${shiftCondition} ${insLengthCondition} AND machine_no=${machine}`;
+        const queryString = `SELECT * FROM u967600739_sohamTex.production_summary_mc_${machineNo} WHERE date='${date}' ${shiftCondition} ${insLengthCondition} AND machine_no=${machine}`;
         const answer = await query({
           query: queryString,
           values: [],
