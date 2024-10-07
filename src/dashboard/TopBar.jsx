@@ -4,6 +4,8 @@ import useAuth from '../app/useAuth';
 import { getCookie } from 'cookies-next';
 import { useState, useRef, useEffect } from 'react';
 import { useDashboardContext } from './Provider';
+import { CgProfile } from 'react-icons/cg';
+import { RiLogoutBoxRLine } from "react-icons/ri";
 import UserStatus from '../components/UserStatus';
 export function TopBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -139,18 +141,21 @@ export function TopBar() {
               </Link>
               {/* Menu */}
               <div
-                className={`absolute right-0 mt-2 w-48 bg-white rounded shadow-lg transition-transform duration-300 ease-in-out ${
+                className={`absolute right-0 mt-2 w-36 bg-white rounded shadow-lg transition-transform duration-300 ease-in-out ${
                   isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
                 }`}
               >
                 <div className="p-2">
-                  {/* <span className="block py-2 px-4 text-gray-800 hover:bg-gray-200 cursor-pointer">
-                    Profile
-                  </span> */}
-                  <span className="py-2 px-4 text-gray-800 hover:bg-gray-200  font-semibold">
-                    {isLoggedIn && currentUser ? `${currentUser}` : ''}
-                  </span>
+                  <div className='flex items-center'>
+                  <CgProfile color='black'size={22}  />
+                    <span className="py-2 px-4 text-gray-800 hover:bg-gray-200  font-semibold">
+                      {isLoggedIn && currentUser ? `${currentUser}` : ''}
+                    </span>
+                  </div>
+                  <div className='flex items-center'>
+                  <RiLogoutBoxRLine color='black' size={22} />
                   <UserStatus />
+                  </div>
                 </div>
               </div>
             </div>
