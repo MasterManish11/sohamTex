@@ -8,6 +8,7 @@ export async function POST(req) {
     const data = await req.json();
     const { machine: machines, fdate, tdate, shift, insenseLentgh } = data.data;
 
+    // Function to find all dates between fdate and tdate
     const findDatesBetween = (startDateStr, endDateStr) => {
       const start = new Date(startDateStr);
       const end = new Date(endDateStr);
@@ -27,8 +28,9 @@ export async function POST(req) {
     const resultDates = findDatesBetween(fdate, tdate);
     const output = [];
     const dateTotals = {};
-    let rowCount = 1; // Add row counter
+    let rowCount = 1; // Row counter
 
+    // Function to perform a query for each date, machine, and shift
     const queryPromise = async (date, machine, shift) => {
       try {
         const shiftCondition = shift !== 'ALL' ? ` AND shift=${shift}` : '';
@@ -47,14 +49,17 @@ export async function POST(req) {
       }
     };
 
-    // Helper function to create a delay
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
+    // Process data concurrently for all dates and machines
     for (const date of resultDates) {
       let dailyTotal = 0;
 
-      for (const machine of machines) {
-        const finalanswer = await queryPromise(date, machine, shift);
+      // Run queries for all machines concurrently
+      const machineQueries = machines.map((machine) => queryPromise(date, machine, shift));
+      const machineResults = await Promise.all(machineQueries);
+
+      // Process each machine's result
+      machineResults.forEach((finalanswer, index) => {
+        const machine = machines[index];
 
         if (finalanswer && finalanswer.length > 0) {
           let production = 0;
@@ -67,7 +72,7 @@ export async function POST(req) {
           }
 
           output.push({
-            No: rowCount++, // Increment row counter once per row
+            No: rowCount++, // Increment row counter
             Date: date,
             Machine: machine,
             insenseLentgh,
@@ -77,37 +82,37 @@ export async function POST(req) {
           dailyTotal += production;
         } else {
           output.push({
-            No: rowCount++, // Increment row counter once per row
+            No: rowCount++, // Increment row counter
             Date: date,
             Machine: machine,
             insenseLentgh: insenseLentgh === 'ALL' ? '-' : insenseLentgh,
             production: 0,
           });
         }
-      }
+      });
 
+      // Add daily total for the current date
       output.push({
-        No: rowCount++, // Increment row counter once per row
+        No: rowCount++, // Increment row counter
         Date: `${date} Total`,
         Machine: '-',
         insenseLentgh,
         production: dailyTotal,
       });
 
+      // Add to the date total
       if (!dateTotals[date]) {
         dateTotals[date] = 0;
       }
       dateTotals[date] += dailyTotal;
-
-      // Sleep for 500 milliseconds after each date loop
-      await sleep(500);
     }
 
     // Calculate the grand total production
     const grandTotal = Object.values(dateTotals).reduce((acc, current) => acc + current, 0);
 
+    // Add grand total row
     output.push({
-      No: rowCount++, // Increment row counter once per row
+      No: rowCount++, // Increment row counter
       Date: 'Grand Total',
       Machine: '-',
       insenseLentgh,
