@@ -76,7 +76,7 @@ const MachineData = ({ data }) => {
               data.status > 0 ? 'bg-green-500' : 'bg-red-500'
             } text-white px-4 py-1 rounded-md w-full text-lg font-semibold`}
           >
-            {data.Production > 0 ? 'Run' : 'Stop'}
+            {data.status == 1 ? 'Run' : 'Stop'}
           </button>
         </div>
       </div>
