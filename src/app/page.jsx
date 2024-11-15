@@ -83,7 +83,7 @@ const DashboardData = () => {
         </div>
       ) : (
         Array.isArray(machineData) &&
-        machineData?.slice(0, 8).map((data, i) => <MachineData data={data} key={i} />)
+        machineData?.slice(0, 7).map((data, i) => <MachineData data={data} key={i} />)
       )}
     </div>
   );
