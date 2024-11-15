@@ -13,10 +13,10 @@ export default function ProductionPage() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedMachines, setSelectedMachines] = useState([]);
-  const [totalMachines, setTotalMachines] = useState(null);
+  const [totalMachines, setTotalMachines] = useState('8');
   const [answer, setAnswer] = useState([]);
-  const [totalShifts, setTotalShifts] = useState(null);
-  const [insLength, setInsLength] = useState([]);
+  const [totalShifts, setTotalShifts] = useState('2');
+  const [insLength, setInsLength] = useState([8,9]);
   const [data, setData] = useState({
     fdate: '',
     tdate: '',
@@ -31,9 +31,9 @@ export default function ProductionPage() {
 
     if (savedParameters) {
       const { totalMachines, totalShifts, insenseLength } = JSON.parse(savedParameters);
-      setTotalMachines(totalMachines);
-      setTotalShifts(totalShifts);
-      setInsLength(insenseLength?.split(','));
+      // setTotalMachines(totalMachines);
+      // setTotalShifts(totalShifts);
+      // setInsLength(insenseLength?.split(','));
     }
   }, []);
 

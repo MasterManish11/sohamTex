@@ -8,9 +8,9 @@ export default function StoppagePage() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedMachines, setSelectedMachines] = useState([]);
-  const [totalMachines, setTotalMachines] = useState(null);
+  const [totalMachines, setTotalMachines] = useState('8');
   const [answer, setAnswer] = useState([]);
-  const [totalShifts, setTotalShifts] = useState(null);
+  const [totalShifts, setTotalShifts] = useState('2');
   const [data, setData] = useState({
     fdate: '',
     machine: '', // Initialize as a string for single selection

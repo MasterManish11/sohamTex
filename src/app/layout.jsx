@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import LayoutWrapper from '@/components/LayoutWrapper'; // Adjust the path as necessary
 
 export const metadata = {
-  title: 'SohamTex',
+  title: 'Rs Automation',
 };
 
 export default function RootLayout({ children }) {

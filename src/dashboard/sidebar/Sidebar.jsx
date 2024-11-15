@@ -32,7 +32,7 @@ export function Sidebar({ mobileOrientation }) {
           <SidebarHeader />
           {isOpen && (
             <div className="text-xl font-bold absolute top-8 sm:right-16 right-14 ">
-              Soham Tex
+              Rs Automation
             </div>
           )}
           {/* <div className="text-xl font-bold absolute top-8 right-16">Soham Tex</div> */}

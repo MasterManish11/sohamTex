@@ -17,7 +17,7 @@ export function SidebarHeader() {
           fontWeight="bold"
           // fontStyle='italic'
         >
-          S
+          R
         </text>
       </svg>
     </div>
